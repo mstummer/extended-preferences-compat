@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="example_text"
+        android:capitalize="words"
+        android:defaultValue="DefaultString"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="EditTextPreference"
+        />
+
+    <com.maximumapps.extendedpreferencescompat.IntegerPreferenceCompat
+        android:key="example_int"
+        android:title="IntegerPreferenceCompat"
+        android:summary="This is a custom preference."
+        android:defaultValue="5"
+        />
+
+    <PreferenceScreen
+        android:key="example_subScreen"
+        android:persistent="false"
+        android:title="PreferenceScreen" >
+
+        <ListPreference
+            android:key="example_list"
+            android:defaultValue="-1"
+            android:entries="@array/pref_example_list_titles"
+            android:entryValues="@array/pref_example_list_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="ListPreference"
+            />
+
+    </PreferenceScreen>
+
+</PreferenceScreen>
