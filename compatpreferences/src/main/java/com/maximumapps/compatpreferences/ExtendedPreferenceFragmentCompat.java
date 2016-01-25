@@ -2,6 +2,7 @@ package com.maximumapps.compatpreferences;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
@@ -12,6 +13,7 @@ public abstract class ExtendedPreferenceFragmentCompat extends PreferenceFragmen
 
 
     public static final String TAG = "EXTENDED_PREFERENCE_FRAGMENT_COMPAT";
+    private int mFragmentContainerId;
 
 
     public ExtendedPreferenceFragmentCompat newInstance() {
@@ -42,7 +44,7 @@ public abstract class ExtendedPreferenceFragmentCompat extends PreferenceFragmen
         args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, preferenceScreen.getKey());
         fragment.setArguments(args);
 
-        ((ShowFragment) getActivity()).showFragment(fragment, TAG, true);
+        showFragment(fragment, TAG, true);
         return true;
     }
 
@@ -53,7 +55,18 @@ public abstract class ExtendedPreferenceFragmentCompat extends PreferenceFragmen
     }
 
 
-    public interface ShowFragment {
-        void showFragment(Fragment fragment, String tag, boolean addToBackStack);
+    public void setFragmentContainerId(int fragmentContainerId) {
+        mFragmentContainerId = fragmentContainerId;
+    }
+
+
+    public void showFragment(Fragment fragment, String tag, boolean addToBackStack) {
+        if (mFragmentContainerId == 0)
+            throw new Error("You must call setFragmentContainerId(int) in onCreatePreferences()!");
+
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(mFragmentContainerId, fragment, tag);
+        if (addToBackStack) transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
