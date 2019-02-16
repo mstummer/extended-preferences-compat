@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.maximumapps.compatpreferences.ExtendedDialogPreferenceCompat;
@@ -13,7 +13,7 @@ import com.maximumapps.compatpreferences.ExtendedDialogPreferenceCompat;
 
 public class IntegerPreferenceCompat extends ExtendedDialogPreferenceCompat {
     private TextView mTextViewPreference;
-    private EditText mTextViewDialog;
+    private NumberPicker mNumberPickerDialog;
     private int mDefaultValue;
 
 
@@ -77,10 +77,11 @@ public class IntegerPreferenceCompat extends ExtendedDialogPreferenceCompat {
      */
     @Override
     protected void onDialogOpened(View rootView) {
-        mTextViewDialog = ((EditText) rootView.findViewById(R.id.numberPicker));
-        mTextViewDialog.setText(Integer.toString(getValue()));
-        mTextViewDialog.requestFocus();
-        mTextViewDialog.selectAll();
+        mNumberPickerDialog = ((NumberPicker) rootView.findViewById(R.id.numberPicker));
+        mNumberPickerDialog.setMinValue(0);
+        mNumberPickerDialog.setMaxValue(100);
+        mNumberPickerDialog.setValue(getValue());
+        mNumberPickerDialog.requestFocus();
     }
 
 
@@ -90,7 +91,7 @@ public class IntegerPreferenceCompat extends ExtendedDialogPreferenceCompat {
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {
-            setValue(Integer.parseInt(mTextViewDialog.getText().toString()));
+            setValue(mNumberPickerDialog.getValue());
         }
     }
 }
