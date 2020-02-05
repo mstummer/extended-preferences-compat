@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ExtendedPreferencesCompat.iml" filepath="$PROJECT_DIR$/ExtendedPreferencesCompat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/compatpreferences/compatpreferences.iml" filepath="$PROJECT_DIR$/compatpreferences/compatpreferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/extended-preferences-compat.iml" filepath="$PROJECT_DIR$/.idea/extended-preferences-compat.iml" />
     </modules>
   </component>
 </project>
